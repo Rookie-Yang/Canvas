@@ -1,6 +1,40 @@
 var canvas = document.getElementById('canvas')
 var context = canvas.getContext('2d')
 
+autoSetCanvasSize(canvas)
+listenToUserMouse()
+
+
+
+
+
+
+var eraserEnable =false 
+
+eraser.onclick = function(){
+  eraserEnable =true
+  actions.className = 'actions x'
+}
+
+brush.onclick = function(){
+  eraserEnable = false
+  actions.className = 'actions'
+}
+
+function autoSetCanvasSize(canvas){
+  setCanvasSize()
+  window.onresize = function(){
+    setCanvasSize()
+  }
+}
+
+function setCanvasSize(){
+  var pageWidth = document.documentElement.clientWidth
+  var pageHeight = document.documentElement.clientHeight
+  canvas.width = pageWidth
+  canvas.height = pageHeight
+}
+
 function drawCircle(x,y,radius){
   context.beginPath()
   context.fillStyle = 'black'
@@ -18,29 +52,38 @@ function drawLine(x1,y1,x2,y2,width){
   context.closePath()
 }
 
-
-var painting =false
-var lastPoint = {x:undefined, y:undefined}
-canvas.onmousedown = function(aaa){
-  painting = true
-  var x = aaa.clientX
-  var y = aaa.clientY
-  lastPoint= {"x": x,"y":y}
-  drawCircle(x,y,1)
-}
-
-canvas.onmousemove = function(aaa){
-  if(painting){
+function listenToUserMouse(){
+  var using =false
+  var lastPoint = {x:undefined, y:undefined}
+  canvas.onmousedown = function(aaa){
+    
     var x = aaa.clientX
     var y = aaa.clientY
-    var newPoint={"x":x,"y":y}
-    drawCircle(x,y,1)
-    drawLine(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y,5)
-    lastPoint = newPoint
+    using = true
+    if(eraserEnable){
+      context.clearRect(x-5,y-5,10,10)
+    }
+    else{
+      lastPoint= {"x": x,"y":y}
+    }
+  }
+  
+  canvas.onmousemove = function(aaa){
+    var x = aaa.clientX
+    var y = aaa.clientY
+    if(!using){return}
+
+    if(eraserEnable){
+      context.clearRect(x-5,y-5,10,10)
+    }
+    else{
+      var newPoint={"x":x,"y":y}
+      drawLine(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y,5)
+      lastPoint = newPoint
+    }
+  }
+  
+  canvas.onmouseup = function(aaa){
+    using = false
   }
 }
-
-canvas.onmouseup = function(aaa){
-  painting = false
-}
-
