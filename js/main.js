@@ -11,14 +11,66 @@ listenToUser()
 
 var eraserEnable =false 
 
-eraser.onclick = function(){
-  eraserEnable =true
-  actions.className = 'actions x'
+pen.onclick = function(){
+  eraserEnable =false 
+  pen.classList.add('active')
+  eraser.classList.remove('active')
 }
 
-brush.onclick = function(){
-  eraserEnable = false
-  actions.className = 'actions'
+eraser.onclick = function(){
+  eraserEnable =true
+  eraser.classList.add('active')
+  pen.classList.remove('active')
+}
+
+red.onclick = function(){
+  context.fillStyle = 'red'
+  context.strokeStyle = 'red'
+  red.classList.add('active')
+  green.classList.remove('active')
+  yellow.classList.remove('active')
+  blue.classList.remove('active')
+  black.classList.remove('active')
+}
+
+green.onclick = function(){
+  context.fillStyle = 'green'
+  context.strokeStyle = 'green'
+  green.classList.add('active')
+  red.classList.remove('active')
+  yellow.classList.remove('active')
+  blue.classList.remove('active')
+  black.classList.remove('active')
+}
+
+yellow.onclick = function(){
+  context.fillStyle = 'yellow'
+  context.strokeStyle = 'yellow'
+  yellow.classList.add('active')
+  red.classList.remove('active')
+  green.classList.remove('active')
+  blue.classList.remove('active')
+  black.classList.remove('active')
+}
+
+blue.onclick = function(){
+  context.fillStyle = 'blue'
+  context.strokeStyle = 'blue'
+  blue.classList.add('active')
+  red.classList.remove('active')
+  green.classList.remove('active')
+  yellow.classList.remove('active')
+  black.classList.remove('active')
+}
+
+black.onclick = function(){
+  context.fillStyle = 'black'
+  context.strokeStyle = 'black'
+  yellow.classList.add('active')
+  red.classList.remove('active')
+  green.classList.remove('active')
+  yellow.classList.remove('active')
+  blue.classList.remove('active')
 }
 
 function autoSetCanvasSize(canvas){
@@ -37,7 +89,6 @@ function setCanvasSize(){
 
 function drawCircle(x,y,radius){
   context.beginPath()
-  context.fillStyle = 'black'
   context.arc(x,y,radius,0,Math.PI*2)
   context.fill()
 }
@@ -45,7 +96,6 @@ function drawCircle(x,y,radius){
 function drawLine(x1,y1,x2,y2,width){
   context.beginPath()
   context.lineWidth = width
-  context.strokeStyle = 'black'
   context.moveTo(x1,y1)
   context.lineTo(x2,y2)
   context.stroke()
