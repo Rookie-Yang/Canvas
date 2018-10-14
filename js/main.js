@@ -15,12 +15,42 @@ pen.onclick = function(){
   eraserEnable =false 
   pen.classList.add('active')
   eraser.classList.remove('active')
+  clear.classList.remove('active')
+  save.classList.remove('active')
 }
 
 eraser.onclick = function(){
   eraserEnable =true
   eraser.classList.add('active')
   pen.classList.remove('active')
+  clear.classList.remove('active')
+  save.classList.remove('active')
+}
+
+clear.onclick = function(){
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
+
+}
+
+download.onclick = function(){
+  var url = canvas.toDataURL("image/png")
+  var a = document.createElement('a')
+  document.body.appendChild(a)
+  a.herf = url
+  a.download = ('我的画')
+  a.target = '_blank'
+  a.click()
+}
+
+black.onclick = function(){
+  context.fillStyle = 'black'
+  context.strokeStyle = 'black'
+  black.classList.add('active')
+  red.classList.remove('active')
+  green.classList.remove('active')
+  yellow.classList.remove('active')
+  blue.classList.remove('active')
 }
 
 red.onclick = function(){
@@ -63,15 +93,29 @@ blue.onclick = function(){
   black.classList.remove('active')
 }
 
-black.onclick = function(){
-  context.fillStyle = 'black'
-  context.strokeStyle = 'black'
-  yellow.classList.add('active')
-  red.classList.remove('active')
-  green.classList.remove('active')
-  yellow.classList.remove('active')
-  blue.classList.remove('active')
+
+
+thin.onclick = function(){
+  thin.classList.add('active')
+  middle.classList.remove('active')
+  thick.classList.remove('active')
+  context.lineWidth = 3
 }
+
+middle.onclick = function(){
+  thin.classList.remove('active')
+  middle.classList.add('active')
+  thick.classList.remove('active')
+  context.lineWidth = 6
+}
+
+thick.onclick = function(){
+  thin.classList.remove('active')
+  middle.classList.remove('active')
+  thick.classList.add('active')
+  context.lineWidth = 9
+}
+
 
 function autoSetCanvasSize(canvas){
   setCanvasSize()
@@ -129,7 +173,7 @@ function listenToUser(){
       }
       else{
         var newPoint={"x":x,"y":y}
-        drawLine(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y,5)
+        drawLine(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y)
         lastPoint = newPoint
       }
     }
@@ -160,7 +204,7 @@ function listenToUser(){
       }
       else{
         var newPoint={"x":x,"y":y}
-        drawLine(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y,5)
+        drawLine(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y)
         lastPoint = newPoint
       }
     }

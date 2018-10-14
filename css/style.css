@@ -5,6 +5,7 @@ ul,ol{
 *{
   margin:0;
   padding:0;
+  box-sizing: border-box;
 }
 
 .icon {
@@ -80,6 +81,40 @@ body{
 }
 
 .colors> li.active{
+  box-shadow: 0 0 3px rgba(0,0,0,1);
+  transform:scale(1.2);
+}
+
+.sizes{
+  position: fixed;
+  right:20px;
+  top:20px;
+  
+}
+.sizes> .thin{
+  width:20px;
+  border: 1px solid black;
+  margin:20px;
+}
+
+.sizes> .middle{
+  width:20px;
+  border: 2px solid black;
+  margin:20px;
+}
+
+.sizes> .thick{
+  width:20px;
+  border: 3px solid black;
+  margin:20px;
+}
+
+.sizes> li{
+  box-shadow: 0 0 3px rgba(0,0,0,0.25);
+  transition:all 0.3s;
+}
+
+.sizes> li.active{
   box-shadow: 0 0 3px rgba(0,0,0,1);
   transform:scale(1.2);
 }
