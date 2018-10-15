@@ -3,7 +3,7 @@ var context = canvas.getContext('2d')
 
 autoSetCanvasSize(canvas)
 listenToUser()
-
+setCanvasInit()
 
 
 
@@ -28,9 +28,10 @@ eraser.onclick = function(){
 }
 
 clear.onclick = function(){
-  context.clearRect(0, 0, canvas.width, canvas.height);
-
-
+ // context.clearRect(0, 0, canvas.width, canvas.height);
+  setCanvasInit()
+ // context.fillStyle = "white"
+ // context.fillRect(0, 0, canvas.width, canvas.height)
 }
 
 download.onclick = function(){
@@ -41,6 +42,7 @@ download.onclick = function(){
   a.download = ('我的画')
   a.target='_blank'
   a.click()
+  setCanvasInit()
 }
 
 
@@ -117,6 +119,10 @@ thick.onclick = function(){
   context.lineWidth = 9
 }
 
+function setCanvasInit(){
+  context.fillStyle = "white"
+  context.fillRect(0, 0, canvas.width, canvas.height)
+}
 
 function autoSetCanvasSize(canvas){
   setCanvasSize()
