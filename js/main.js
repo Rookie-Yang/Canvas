@@ -37,11 +37,12 @@ download.onclick = function(){
   var url = canvas.toDataURL("image/png")
   var a = document.createElement('a')
   document.body.appendChild(a)
-  a.herf = url
+  a.href = url
   a.download = ('我的画')
-  a.target = '_blank'
+  a.target='_blank'
   a.click()
 }
+
 
 black.onclick = function(){
   context.fillStyle = 'black'
