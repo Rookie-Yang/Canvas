@@ -15,16 +15,12 @@ pen.onclick = function(){
   eraserEnable =false 
   pen.classList.add('active')
   eraser.classList.remove('active')
-  clear.classList.remove('active')
-  save.classList.remove('active')
 }
 
 eraser.onclick = function(){
   eraserEnable =true
   eraser.classList.add('active')
   pen.classList.remove('active')
-  clear.classList.remove('active')
-  save.classList.remove('active')
 }
 
 clear.onclick = function(){
